@@ -6,7 +6,8 @@ start(_StartType, _StartArgs) ->
     Routes = [ {
         '_',
         [
-            {"/", kind_rest_root, []}
+            {"/", kind_rest_root, []},
+	    {"/run", kind_rest_run, []}
         ]
     } ],
     Dispatch = cowboy_router:compile(Routes),

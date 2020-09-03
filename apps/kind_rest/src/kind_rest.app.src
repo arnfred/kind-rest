@@ -5,8 +5,10 @@
   {mod, {kind_rest_app, []}},
   {applications,
    [kernel,
+    stdlib,
     cowboy,
-    stdlib
+    jiffy,
+    kind
    ]},
   {env,[]},
   {modules, []},
