@@ -3,12 +3,15 @@
 -export([init/2]).
 
 init(Req, Opts) ->
-    Response = ejson(kind:run("def main -> False", [])),
-    io:format("Response: ~p~n", [Response]),
-    Json = jiffy:encode(Response),
+    {ok, ReqBody, Req2} = cowboy_req:read_body(Req),
+    RequestJson = jiffy:decode(ReqBody, [return_maps]),
+    Body = binary_to_list(maps:get(<<"body">>, RequestJson)),
+    Args = [binary_to_list(Arg) || Arg <- maps:get(<<"args">>, RequestJson)],
+    Response = ejson(kind:run(Body, Args)),
+    ResponseJson = jiffy:encode(Response),
     Req2 = cowboy_req:reply(200,
                             #{<<"content-type">> => <<"application/json">>},
-                            Json,
+                            ResponseJson,
                             Req),
     {ok, Req2, Opts}.
 
