@@ -1,0 +1,3 @@
+[submodule "apps/kind_rest/priv/static/assets/ace-builds"]
+	path = apps/kind_rest/priv/static/assets/ace-builds
+	url = https://github.com/ajaxorg/ace-builds/

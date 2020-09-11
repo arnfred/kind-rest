@@ -1,0 +1,25 @@
+.ace_editor {
+    margin: auto;
+    margin-bottom: 1rem;
+    height: 200px;
+    width: 100%;
+    border: 0.3rem solid #222;
+}
+.scrollmargin {
+    height: 80px;
+    text-align: center;
+}
+span#intro {
+	width: 100%;
+}
+article {
+    width: 100%;
+}
+h1 {
+    margin-top: 5rem;
+}
+h1#title {
+    font-size: 6rem;
+    margin-top: 0;
+}
+p.example { margin-bottom: 0.4rem; margin-top: 1.5rem; }
