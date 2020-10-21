@@ -12,7 +12,7 @@
   0},
  {<<"kind">>,
   {git,"https://github.com/arnfred/kind",
-       {ref,"4d218cd7f86e17c87051b5760e488874121d23c1"}},
+       {ref,"35bd7a6dd7ef73a6cb2c1fca2185e77efcac06be"}},
   0},
  {<<"ranch">>,
   {git,"https://github.com/ninenines/ranch",

@@ -3,6 +3,19 @@ kind-rest
 
 Rest interface for the kind language. Useful for an online demo.
 
+Build and run
+-----
+
+Set env variable `PORT` to port. Default is 2938. Ideally the app should be buildable by running `rebar3 run`, but this hasn't worked recently and I haven't bothered to understand why. Instead, build by doing the following:
+
+```
+rm -rf _build
+rebar3 release
+_build/default/rel/kind_rest/bin/kind_rest foreground
+```
+
+Then you can access the website on: `localhost:2938`.
+
 API
 ---
 
@@ -17,15 +30,6 @@ The api currently serves a single end-point `/run` which accepts a json body of 
 
 The api is also currently really prone to falling over without good error messages.
 
-
-Build and run
------
-
-Set env variable `PORT` to port. Default is 2938.
-
-```
-rebar3 run
-```
 
 Run test command
 ----------------

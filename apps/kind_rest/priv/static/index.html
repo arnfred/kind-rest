@@ -39,7 +39,7 @@
         <h1 id="title">The Kind Programming Language</h1>
 
 <p><span id="intro">
-<em>The Kind Programming Language is a programming language built on top of the BEAM virtual machine (home of Erlang and Elixir). It's created to try out a few fanciful ideas in type system design and static analysis. One of which is the idea that all functions are considered total and any input a function isn't defined for leads to a compile time error.</em>
+<em>The Kind Programming Language is a programming language built on top of the BEAM virtual machine (home of Erlang and Elixir). It's created to try out a few fanciful ideas in type system design and static analysis. One of which is the idea that all functions are considered total and any function call for input that a function isn't defined for leads to a compile time error.</em>
 </span></p>
 
 <p><span class="navigation">
@@ -49,12 +49,12 @@
 <p><a name="features"></a></p><h1 id="features-of-kind">Features</h1>
 <ul>
 	<li>Algebraic Data Types (done)</li>
-	<li>Pattern Matching (partially done)</li>
-	<li>Erlang Interop (partially done)</li>
+	<li>Pattern Matching (done)</li>
 	<li>Module System (done)</li>
-	<li>Type Classes (pending)</li>
-	<li>Numbers (pending)</li>
-	<li>Strings (pending)</li>
+	<li>Erlang Interop (partially done)</li>
+	<li>Granular Type Checking (partially done)</li>
+	<li>Human readable errors (pending)</li>
+	<li>Multiple Dispatch (pending)</li>
 </ul>
 
 <p><a name="examples"></a></p><h1 id="examples">Examples</h1>
@@ -62,10 +62,21 @@
 
 
 <div class="editor">
-    <p class="example">Main function always returning `False`</p>
-    <div class="pane" id="example1">def alwaysFalse -> False
+    <p class="example">A Binary Tree: A simple showcase of AST and pattern matching syntax.</p>
+    <div class="pane" id="example1">import kind/prelude/Compare/_
 
-def main -> alwaysFalse()
+type Tree a -> Leaf | Node: {left: Tree(a), value: a, right: Tree(a)}
+import Tree/_
+
+def insert root elem
+  | Leaf _                         -> Node(Leaf, elem, Leaf)
+  | (Node: {left, value, right}) _ -> compare(elem, value).match(
+        EQ -> root
+        LT -> Node(left.insert(elem), value, right)
+        GT -> Node(left, value, right.insert(elem)))
+
+def main -> Leaf.insert(1).insert(3).insert(5).insert(4).insert(2)
+
     </div>
     <input type="button" value="Run" class="run">
     <div class="response" id="response1"></div>
